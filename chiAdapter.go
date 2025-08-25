@@ -27,7 +27,7 @@ func (a *chiLogEntryAdapter) Panic(v interface{}, stack []byte) {
 	a.entry.Panic(v, stack)
 }
 
-func ChiLogger() func(next http.Handler) http.Handler {
+func Middleware() func(next http.Handler) http.Handler {
 	formatter := &CustomLogFormatter{}
 	adapter := &chiLogFormatterAdapter{formatter: formatter}
 	return middleware.RequestLogger(adapter)
