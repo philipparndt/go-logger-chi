@@ -17,7 +17,14 @@ type LogFormatter interface {
     NewLogEntry(r *http.Request) LogEntry
 }
 
-type CustomLogFormatter struct{}
+type CustomLogFormatter struct {
+}
+
+var okLevel string = "debug"
+
+func SetOkLevel(level string) {
+    okLevel = level
+}
 
 func (f *CustomLogFormatter) NewLogEntry(r *http.Request) LogEntry {
     return &CustomLogEntry{request: r}
@@ -49,7 +56,7 @@ func (l *CustomLogEntry) Write(status, bytes int, header http.Header, elapsed ti
     case status >= 400:
         logger.Warn(message)
     default:
-        logger.Debug(message)
+        logger.Log(okLevel, message)
     }
 }
 
