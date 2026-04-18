@@ -1,4 +1,5 @@
 # go-logger-chi
+# deprecated, use github.com/philipparndt/go-logger/chi
 
 Shared logger configuration for my go chi projects.
 
